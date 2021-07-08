@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using System;
 using System.Threading.Tasks;
-using Filmens.Core.ProjectAggregate;
+using Filmens.Core.FilmAggregate;
 using Xunit;
 
 namespace Filmens.IntegrationTests.Data
@@ -10,17 +11,17 @@ namespace Filmens.IntegrationTests.Data
         [Fact]
         public async Task AddsProjectAndSetsId()
         {
-            var testProjectName = "testProject";
+            var testFilmTitle = "testFilm";
             var repository = GetRepository();
-            var project = new Project(testProjectName);
+            var film = new Film(testFilmTitle, DateTime.UtcNow);
 
-            await repository.AddAsync(project);
+            await repository.AddAsync(film);
 
-            var newProject = (await repository.ListAsync())
+            var newFilm = (await repository.ListAsync())
                             .FirstOrDefault();
 
-            Assert.Equal(testProjectName, newProject.Name);
-            Assert.True(newProject?.Id > 0);
+            Assert.Equal(testFilmTitle, film.Title);
+            Assert.True(newFilm?.Id > 0);
         }
     }
 }

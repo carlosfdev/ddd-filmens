@@ -1,4 +1,4 @@
-﻿using Filmens.Core.ProjectAggregate;
+﻿using Filmens.Core.FilmAggregate;
 using Filmens.Infrastructure.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -28,13 +28,13 @@ namespace Filmens.IntegrationTests.Data
             return builder.Options;
         }
 
-        protected EfRepository<Project> GetRepository()
+        protected EfRepository<Film> GetRepository()
         {
             var options = CreateNewContextOptions();
             var mockMediator = new Mock<IMediator>();
 
             _dbContext = new AppDbContext(options, mockMediator.Object);
-            return new EfRepository<Project>(_dbContext);
+            return new EfRepository<Film>(_dbContext);
         }
     }
 }

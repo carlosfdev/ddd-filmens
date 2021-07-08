@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.EFCore.Extensions;
-using Filmens.Core.ProjectAggregate;
 using Filmens.Core.FilmAggregate;
 using Filmens.SharedKernel;
 using MediatR;
@@ -24,8 +23,6 @@ namespace Filmens.Infrastructure.Data
             _mediator = mediator;
         }
 
-        public DbSet<ToDoItem> ToDoItems { get; set; }
-        public DbSet<Project> Projects { get; set; }
         public DbSet<Film> Films { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

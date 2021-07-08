@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using Filmens.Core.Interfaces;
-using Filmens.Core.Services;
 
 namespace Filmens.Core
 {
@@ -8,8 +6,6 @@ namespace Filmens.Core
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ToDoItemSearchService>()
-                .As<IToDoItemSearchService>().InstancePerLifetimeScope();
         }
     }
 }

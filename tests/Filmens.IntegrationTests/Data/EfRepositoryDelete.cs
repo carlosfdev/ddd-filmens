@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Filmens.Core.ProjectAggregate;
+using Filmens.Core.FilmAggregate;
 using Xunit;
 
 namespace Filmens.IntegrationTests.Data
@@ -12,16 +12,16 @@ namespace Filmens.IntegrationTests.Data
         {
             // add a project
             var repository = GetRepository();
-            var initialName = Guid.NewGuid().ToString();
-            var project = new Project(initialName);
-            await repository.AddAsync(project);
+            var initialTitle = Guid.NewGuid().ToString();
+            var film = new Film(initialTitle, DateTime.UtcNow);
+            await repository.AddAsync(film);
 
             // delete the item
-            await repository.DeleteAsync(project);
+            await repository.DeleteAsync(film);
 
             // verify it's no longer there
             Assert.DoesNotContain(await repository.ListAsync(),
-                project => project.Name == initialName);
+                project => film.Title == initialTitle);
         }
     }
 }

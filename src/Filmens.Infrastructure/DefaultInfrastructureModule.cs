@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
-using Filmens.Core.Interfaces;
-using Filmens.Core.ProjectAggregate;
+using Filmens.Core.FilmAggregate;
 using Filmens.Infrastructure.Data;
 using Filmens.SharedKernel.Interfaces;
 using MediatR;
@@ -19,7 +18,7 @@ namespace Filmens.Infrastructure
         public DefaultInfrastructureModule(bool isDevelopment, Assembly callingAssembly =  null)
         {
             _isDevelopment = isDevelopment;
-            var coreAssembly = Assembly.GetAssembly(typeof(Project)); // TODO: Replace "Project" with any type from your Core project
+            var coreAssembly = Assembly.GetAssembly(typeof(Film)); // TODO: Replace "Project" with any type from your Core project
             var infrastructureAssembly = Assembly.GetAssembly(typeof(StartupSetup));
             _assemblies.Add(coreAssembly);
             _assemblies.Add(infrastructureAssembly);
@@ -76,8 +75,6 @@ namespace Filmens.Infrastructure
                 .AsImplementedInterfaces();
             }
 
-            builder.RegisterType<EmailSender>().As<IEmailSender>()
-                .InstancePerLifetimeScope();
         }
 
         private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)
