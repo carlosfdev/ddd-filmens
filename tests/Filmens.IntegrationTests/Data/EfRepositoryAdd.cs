@@ -9,7 +9,7 @@ namespace Filmens.IntegrationTests.Data
     public class EfRepositoryAdd : BaseEfRepoTestFixture
     {
         [Fact]
-        public async Task AddsProjectAndSetsId()
+        public async Task AddsFilmAndSetsId()
         {
             var testFilmTitle = "testFilm";
             var repository = GetRepository();
